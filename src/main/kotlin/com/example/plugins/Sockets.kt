@@ -18,8 +18,6 @@ class Server<K>(var hostname: String) {
     val mutex: Mutex = Mutex(false)
     val connections: MutableMap<K, Websocket<K>> = HashMap()
     var messageHandler: ((Websocket<K>, String) -> Unit)? = null
-//    var pingHandler: ((Websocket<K>) -> Unit)? = null
-
 
     suspend fun write(sn: K, data: String) {
         mutex.lock(connections)
